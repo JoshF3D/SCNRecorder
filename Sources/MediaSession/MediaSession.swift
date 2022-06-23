@@ -33,13 +33,13 @@ final class MediaSession {
 
   typealias Output = MediaSessionOutput
 
-  enum VideoInput: Input.Video {
+  enum VideoInput: VideoMediaSessionInput {
 
-    case pixel(_ input: Input.PixelBufferVideo)
+    case pixel(_ input: PixelBufferVideo)
 
-    case sample(_ input: Input.SampleBufferVideo)
+    case sample(_ input: SampleBufferVideo)
 
-    var videoInput: Input.Video {
+    var videoInput: VideoMediaSessionInput {
       switch self {
       case .pixel(let input): return input
       case .sample(let input): return input
@@ -69,7 +69,7 @@ final class MediaSession {
 
   let videoInput: VideoInput
 
-  private(set) var audioInput: Input.SampleBufferAudio?
+  private(set) var audioInput: SampleBufferAudio?
 
   init(
     queue: DispatchQueue,
@@ -81,7 +81,7 @@ final class MediaSession {
 
   convenience init(
     queue: DispatchQueue,
-    videoInput: Input.PixelBufferVideo
+    videoInput: PixelBufferVideo
   ) {
     self.init(queue: queue, videoInput: .pixel(videoInput))
 
@@ -93,7 +93,7 @@ final class MediaSession {
 
   convenience init(
     queue: DispatchQueue,
-    videoInput: Input.SampleBufferVideo
+    videoInput: SampleBufferVideo
   ) {
     self.init(queue: queue, videoInput: .sample(videoInput))
 
@@ -103,7 +103,7 @@ final class MediaSession {
     }
   }
 
-  func setAudioInput(_ audioInput: Input.SampleBufferAudio) {
+  func setAudioInput(_ audioInput: SampleBufferAudio) {
     self.audioInput = audioInput
     audioInput.output = { [weak self] (sampleBuffer) in
       guard let self = self else { return }

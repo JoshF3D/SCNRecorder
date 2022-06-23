@@ -27,17 +27,13 @@ import Foundation
 import AVFoundation
 import UIKit
 
+typealias SampleBufferAudio = AudioMediaSessionInput & SampleBufferInput
+
+typealias SampleBufferVideo = VideoMediaSessionInput & SampleBufferInput
+
+typealias PixelBufferVideo = VideoMediaSessionInput & BufferInput
+
 protocol MediaSessionInput {
-
-  typealias Audio = AudioMediaSessionInput
-
-  typealias Video = VideoMediaSessionInput
-
-  typealias SampleBufferAudio = Audio & SampleBufferInput
-
-  typealias SampleBufferVideo = Video & SampleBufferInput
-
-  typealias PixelBufferVideo = Video & BufferInput
 
   func start()
 

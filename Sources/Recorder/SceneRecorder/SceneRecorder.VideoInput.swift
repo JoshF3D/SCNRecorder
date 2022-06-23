@@ -29,7 +29,7 @@ import SceneKit
 
 extension SceneRecorder {
 
-  final class VideoInput: MediaSession.Input.PixelBufferVideo, TimeScalable {
+  final class VideoInput: PixelBufferVideo, TimeScalable {
 
     enum Error: Swift.Error {
 

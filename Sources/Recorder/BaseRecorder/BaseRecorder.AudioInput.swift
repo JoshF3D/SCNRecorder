@@ -29,7 +29,7 @@ import ARKit
 
 extension BaseRecorder {
 
-  final class AudioInput: NSObject, MediaSession.Input.SampleBufferAudio {
+  final class AudioInput: NSObject, SampleBufferAudio {
 
     let queue: DispatchQueue
 
